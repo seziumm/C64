@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>SEZIUM C64 WEBSITE</title>
+
+<link rel="stylesheet" href="css/palette.css">
+<link rel="stylesheet" href="css/font.css">
+
+<style>
+* {
+  color: var(--c64-light-blue);
+  font-family: 'C64 Font', monospace;
+  font-size: 8px;
+  line-height: 1;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--c64-black);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  overscroll-behavior: none;
+  user-select: none;
+}
+
+.screen-border {
+  background: var(--c64-light-blue);
+  padding: 36px 32px;
+  position: relative;
+  zoom: var(--terminal-zoom, 1);
+  touch-action: none;
+}
+
+#screen {
+  width: 320px;
+  height: 200px;
+  background: var(--c64-blue);
+  box-sizing: border-box;
+  position: relative;
+}
+
+.screen-border::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(to bottom,
+    transparent 0, transparent 1px,
+    rgba(0,0,0,0.05) 1px, rgba(0,0,0,0.05) 2px);
+}
+
+#screen-content {
+  width: 100%;
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+
+/*
+  opacity: 0.01 invece di 0 — iOS Safari ignora gli input con opacity:0
+  font-size: 16px — previene lo zoom automatico iOS
+  position: absolute coprendo tutto #screen — il tap apre la tastiera nativamente
+*/
+#input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.01;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: transparent;
+  caret-color: transparent;
+  padding: 0;
+  margin: 0;
+  z-index: 10;
+  vertical-align: text-top;
+  -webkit-user-select: text;
+  user-select: text;
+  /* touch-action: auto sull'input — lascia che il browser gestisca il tap */
+  touch-action: auto;
+}
+
+.cursor-char {
+  background: var(--c64-light-blue);
+  color: var(--c64-blue);
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  vertical-align: text-top;
+}
+.cursor-char--hidden {
+    visibility: hidden;
+}
+</style>
+</head>
+<body>
+
+  <div class="screen-border">
+    <div id="screen">
+      <span id="screen-content"></span>
+      <input id="input" type="text"
+        autocomplete="off" autocorrect="off"
+        autocapitalize="characters" spellcheck="false">
+    </div>
+  </div>
+
+  <script src="js/core/text.js"></script>
+  <script src="js/core/terminal.js"></script>
+  <script src="js/core/shell.js"></script>
+  <script src="js/api/supabase.js"></script>
+  <script src="js/commands/static.js"></script>
+  <script src="js/commands/dynamic.js"></script>
+  <script src="js/input/mobile.js"></script>
+  <script src="js/input/desktop.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

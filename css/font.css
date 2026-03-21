@@ -1,0 +1,10 @@
+/* css/c64-font.css */
+
+@font-face 
+{
+    font-family: 'C64 Font';
+    src: url('../font/C64.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+

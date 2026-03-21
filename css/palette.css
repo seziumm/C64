@@ -1,0 +1,18 @@
+:root {
+  --c64-black:       #000000;
+  --c64-white:       #ffffff;
+  --c64-red:         #68372b;
+  --c64-cyan:        #70a4b2;
+  --c64-purple:      #6f3d86;
+  --c64-green:       #588d43;
+  --c64-blue:        #352879;
+  --c64-yellow:      #b8c76f;
+  --c64-orange:      #6f4f25;
+  --c64-brown:       #433900;
+  --c64-light-red:   #9a6759;
+  --c64-dark-grey:   #444444;
+  --c64-grey:        #6c6c6c;
+  --c64-light-green: #9ad284;
+  --c64-light-blue:  #6c5eb5;
+  --c64-light-grey:  #959595;
+}
